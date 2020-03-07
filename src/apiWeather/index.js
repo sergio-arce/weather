@@ -1,55 +1,50 @@
 
-// todo url and api_key desde proces.env
+const {  REACT_APP_URL, REACT_APP_KEY } = process.env
 
 const apiWeather = {
-    __URL__: 'https://api.weatherbit.io/v2.0/', 
-    __API_KEY__: 'e66c10579e7f43d6b80819c7dd3c9d20',
+    __URL__: REACT_APP_URL, 
+    __API_KEY__: REACT_APP_KEY,
+
+    async forecastGeolocation(latitude, longitude) {
+        // todo validate latitude, longitude
+        const forecast = await fetch(`${this.__URL__}current?lat=${latitude}&lon=${longitude}&key=${this.__API_KEY__}`)
+		const response = await forecast.json()
+        return response
+    },
 
     async forecastToday(query) {
         // todo validate query
         const forecasts = await fetch(`${this.__URL__}current?city=${query}&key=${this.__API_KEY__}`)
-        const resp = await forecasts.json()
-        const { weather:{ icon, description }, city_name, sunset, timezone, ob_time, last_ob_time, wind_cdir_full } = resp.data[0]
-
+        const response = await forecasts.json()
+        const { timezone, ob_time, city_name, last_ob_time, wind_cdir_full, sunrise, sunset, datetime, temp, weather: { icon, description } } = response.data[0]
         const moreDatas = await fetch(`${this.__URL__}forecast/daily?city=${query}&days=2&key=${this.__API_KEY__}`)
         const results = await moreDatas.json()
-        const { lon, lat, country_code } = results
+        const { lon, lat } = results
         const { max_temp, min_temp } = results.data[0]
-
-        return { city_name, icon, description, sunset, timezone, ob_time, last_ob_time, wind_cdir_full, lon, lat, country_code, max_temp, min_temp }
+        return [{ city_name,icon, description, temp, max_temp, min_temp, timezone, ob_time,  last_ob_time, wind_cdir_full, sunrise, sunset, datetime,  lon, lat }]
     },
 
-    forecastTomorrow(query) {
+    async forecastTomorrow(query) {
         // todo validate
-        return fetch(`${this.__URL__}forecast/daily?city=${query}&days=2&key=${this.__API_KEY__}`)
-            .then(resp => resp.json())
-            .then(resp => {
-                const { city_name, timezone, lon, lat, country_code } = resp
-                const { max_temp, min_temp, wind_cdir_full, valid_date, weather: { icon, description } } = resp.data[0]
-                return { city_name, timezone, lon, lat, country_code, max_temp, min_temp, wind_cdir_full, valid_date, icon, description }
-            })
+        const forecasts = await fetch(`${this.__URL__}forecast/daily?city=${query}&days=2&key=${this.__API_KEY__}`)
+        const response = await forecasts.json()
+        const { city_name, timezone, lon, lat } = response
+        const { max_temp, min_temp, wind_cdir_full, valid_date, weather: { icon, description } } = response.data[0]
+        return [{ city_name, timezone, lon, lat, max_temp, min_temp, wind_cdir_full, valid_date, icon, description }]
     },
 
-    // forecastSevenDays(query) {
-    async searchForCity(query) {
+    async forecastSevenDays(query) {
         // todo validate
         const forecasts = await fetch(`${this.__URL__}forecast/daily?city=${query}&days=7&key=${this.__API_KEY__}`)
-        const results = forecasts.json()
-        return results
+        const response = await forecasts.json()
+        return response
     },
 
-    forecastSexteenDays(query) {
+    async forecastSexteenDays(query) {
         // todo validate
-        return fetch(`${this.__URL__}forecast/daily?city=${query}&key=${this.__API_KEY__}`)
-            .then(resp => resp.json())
-            .then(resp => console.log(resp))
+        const forecasts = await fetch(`${this.__URL__}forecast/daily?city=${query}&key=${this.__API_KEY__}`)
+        const response = await forecasts.json()
+        return response
     },
 }
-
 export default apiWeather
-
-
-
-
-
-

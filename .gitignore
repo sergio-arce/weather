@@ -25,3 +25,5 @@ yarn-error.log*
 # weather app 
 yarn.lock
 
+.env
+

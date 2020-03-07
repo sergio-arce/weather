@@ -1,46 +1,33 @@
 
 import React, { useState } from 'react'
-// component
-import Today from '../Today/'
+// components 
+import Search from '../Search'
+import Menu from '../Menu'
+import Today from '../Today'
+import Tomorrow from '../Tomorrow'
+import SevenDays from '../SevenDays'
+import SexteenDays from '../SexteenDays'
+import Geolocation from '../Geolocation'
+// routes
+import { Route, withRouter, Switch, Redirect } from 'react-router-dom'
 
+const App = ({ history }) => {
+	const [city, setCity] = useState(false)
 
-const App = () => {
-	const [query, setQuery] = useState('')
-	const [city, setCity] = useState('')
-	const [forecasts, setForecasts] = useState('')
-
-	if (forecasts) {
-		
-		console.log('app', forecasts)
+	const searchWeather = query => {
+		setCity(query)
+		history.push('/today')
 	}
-	
-	return <div>
-		<input 
-			placeholder="Search weather your city"
-			onChange={(e) => setQuery(e.target.value)}
-			value={query}
-		/>
-		<button 
-			onClick={() => {
-				setCity(query)
-			}}
-		>
-			search
-		</button>
-		{city && <Today city={city} setForecasts={setForecasts}/>}
-		{forecasts && <h2>{forecasts.city_name}</h2>}
-		{forecasts && forecasts.data.map((forecast, key) => <div key={key}>
-			<img src={`https://www.weatherbit.io/static/img/icons/${forecast.weather.icon}.png`} alt="icon_current"/>
-			<p>{forecast.weather.description}</p>
-		</div>)}
-		
-		{/* {forecasts && <p>City: {forecasts.city_name}</p>}
-		{forecasts && <p>Description: {forecasts.description}</p>}
-		{forecasts && <p>Timezone: {forecasts.timezone}</p>}
-		{forecasts && <p>Sunset: {forecasts.sunset}</p>}
-		{forecasts && <img src={`https://www.weatherbit.io/static/img/icons/${forecasts.icon}.png`} alt="icon_current"/>} */}
-
-	</div>
+	return <>
+		<Search searchWeather={searchWeather}/>
+		{city && <Menu />}
+		<Switch>
+			<Route exact path='/' render={() => !city && <Geolocation />} />
+			<Route exact path='/today' render={() => city ? <Today city={city} /> : <Redirect  to='/' />} />
+			<Route exact path='/tomorrow' render={() => city ? <Tomorrow city={city} /> : <Redirect to='/' />} />
+			<Route exact path='/seven-days' render={() => city ? <SevenDays city={city} /> : <Redirect to='/' />} />
+			<Route exact path='/sexteen-days' render={() => city ? <SexteenDays city={city} /> : <Redirect to='/' /> } /> 
+		</Switch>
+	</>
 }
-
-export default App
+export default withRouter(App)
