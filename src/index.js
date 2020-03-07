@@ -5,7 +5,9 @@ import './style.css'
 import App from './components/App/'
 import * as serviceWorker from './serviceWorker'
 import { BrowserRouter } from 'react-router-dom'
-console.log('process.env', process.env)
+// const { REACT_APP_URL, REACT_APP_KEY } = process.env
+// console.log('url: ', REACT_APP_URL)
+// console.log( 'key: ', REACT_APP_KEY)
 ReactDOM.render(
                 <BrowserRouter>
                     <App />
