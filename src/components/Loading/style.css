@@ -1,0 +1,16 @@
+.loading {
+    display: flex;
+    justify-content: center;
+    border: 1px solid white;
+    height: 100vh;
+    align-items: center;
+}
+.loading__container {
+    text-align: center;
+}
+
+.loading__text {
+    margin: 1rem;
+    color: white;
+    font-size: 1.6rem;
+}

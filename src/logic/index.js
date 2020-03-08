@@ -8,8 +8,8 @@ const logic = {
      * @param { number } longitude 
      */
     forecastGeolocation(latitude, longitude) {
-        if (typeof latitude !== 'number') throw TypeError('latitude geolocation is not a number')
-        if (typeof longitude !== 'number') throw TypeError ('longitude goelocation is not a number')
+        if (typeof latitude !== 'number') throw Error('latitude geolocation is not a number')
+        if (typeof longitude !== 'number') throw Error ('longitude geolocation is not a number')
         
         return apiWeather.forecastGeolocation(latitude, longitude)
     },

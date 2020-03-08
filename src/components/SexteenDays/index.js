@@ -4,18 +4,25 @@ import React, { useEffect, useState } from 'react'
 import logic from '../../logic'
 // icon
 import Icon from '../Icon'
+// loading
+import Loading from '../Loading'
 
 const SexteenDays = ({ city }) => {
 	const [forecasts, setForecasts] = useState(false)
+	const [isVisible, setIsVisible] = useState(false)
 
 	useEffect(() => {
 		forecastSexteenDays(city)
 	}, [city]) 
 
 	const forecastSexteenDays = city => {
+		setIsVisible(false)
 		try {
 			logic.forecastSexteenDays(city)
-				.then(resp => setForecasts(resp))
+				.then(resp => {
+					setForecasts(resp)
+					setIsVisible(false)
+				})
 				.catch(({ message }) => console.log('error', message))
 		} catch ({ message }) {
 			console.log('error-forecastSexteenDays', message)
@@ -23,6 +30,7 @@ const SexteenDays = ({ city }) => {
 	}
 	
 	return <>
+		<Loading isVisible={isVisible} /> 
 		{forecasts && <p>city_name: {forecasts.city_name}</p>}
 		{forecasts && <p>lon: {forecasts.lon}</p>}
 		{forecasts && <p>lat: {forecasts.lat}</p>}
