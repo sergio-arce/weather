@@ -14,12 +14,12 @@ const Geolocation = () => {
 				const { coords: { latitude, longitude } } = location
 				try {
 					logic.forecastGeolocation(latitude, longitude)
-					.then(response => { setLocations(response)})
+					.then(response => setLocations(response))
 					.catch(({error}) => console.log(error))
 				} catch ({ message }) {
 					console.log(message)
 				}
-			}, ({message}) => console.log('error', message))
+			}, ({ message }) => console.log('error', message))
 		}
 	}, [])
 
@@ -33,9 +33,9 @@ const Geolocation = () => {
 			<p>timezone: {location.timezone}</p>
 			<p>ob_time: {location.ob_time}</p>
 			<p>last_ob_time: {location.last_ob_time}</p>
-			<p>Direccion del viento: {location.wind_cdir_full}</p>
-			<p>Salida del sol: {location.sunrise}</p>
-			<p>Entrada del sol: {location.sunset}</p>
+			<p>wind_cdir_full: {location.wind_cdir_full}</p>
+			<p>sunrise: {location.sunrise}</p>
+			<p>sunset: {location.sunset}</p>
 			<p>datetime: {location.datetime}</p>
 			<p>temp: {location.temp}</p>
 		</div>)}

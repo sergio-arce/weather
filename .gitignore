@@ -23,7 +23,7 @@ yarn-debug.log*
 yarn-error.log*
 
 # weather app 
-yarn.lock
-
+package-lock.json
 .env
+
 
