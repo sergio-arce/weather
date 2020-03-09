@@ -1,10 +1,21 @@
 
 body {
-    background: -webkit-linear-gradient(to left, #232526, #414345);
-    background: linear-gradient(to left, #232526, #414345);
+    margin: 0;
+   
+    /* theme 1 */
+    /* background: #c33764;
+    background: -webkit-linear-gradient(to right, #c33764, #1d2671); 
+    background: linear-gradient(to right, #c33764, #1d2671);   */
+
+    /* theme 2 */
+    background: #051622
+
+    /* theme dark */
+    
+
 }
 
 p {
-    color: white;
+    color: #1BA098;
     margin: 0;
 }
