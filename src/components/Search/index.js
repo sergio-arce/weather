@@ -6,7 +6,7 @@ const Search = ({ searchWeather }) => {
 	
 	return <>
 		<input 
-			placeholder="Search city..."
+			placeholder="Search..."
 			onChange={e => setCity(e.target.value)}
 		/>
 		<button
@@ -19,4 +19,3 @@ const Search = ({ searchWeather }) => {
 }
 
 export default Search
-
