@@ -19,8 +19,10 @@ const App = ({ history }) => {
 		history.push('/today')
 	}
 	return <>
-		<Search searchWeather={searchWeather}/>
-		{city && <Menu />}
+		<div className="header">
+			<Search searchWeather={searchWeather}/>
+			{city && <Menu />}
+		</div>
 		<Switch>
 			<Route exact path='/' render={() => !city && <Geolocation />} />
 			<Route exact path='/today' render={() => city ? <Today city={city} /> : <Redirect  to='/' />} />

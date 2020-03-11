@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom'
 import './style.css'
 import App from './components/App/'
 import * as serviceWorker from './serviceWorker'
+import './sass/index.sass'
 import { BrowserRouter } from 'react-router-dom'
 // const { REACT_APP_URL, REACT_APP_KEY } = process.env
 // console.log('url: ', REACT_APP_URL)
