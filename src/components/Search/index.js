@@ -1,34 +1,21 @@
 
-import React, { useState } from 'react'
-
- 
+import React  from 'react'
 
 const Search = ({ searchWeather }) => {
-	const [city, setCity] = useState('')
+
+	const enterMyInput = (e) => {
+		e.key === 'Enter' && searchWeather(e.target.value)
+	} 
 	
 	return <div className="nav">
-		{/* <button> */}
-			<span>
-				<i className="fas fa-bars nav__item--hamburguer"></i>
-			</span>
-		{/* </button> */}
-		
+		<span>
+			<i className="fas fa-bars nav__item--hamburguer"></i>
+		</span>
 		<input 
 			className="nav__item--input"
 			placeholder="Search..."
-			onChange={e => setCity(e.target.value)}
+			onKeyDown={enterMyInput}
 		/>
-
-		{/* <button
-			onClick={() => searchWeather(city)}
-		> */}
-			<span
-				onClick={() => searchWeather(city)}
-			>
-				<i  className="fas fa-caret-right nav__item--send"></i>
-			</span>
-		{/* </button> */}
-		
 	</div>
 }
 

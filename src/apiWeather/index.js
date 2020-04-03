@@ -45,7 +45,7 @@ const apiWeather = {
         const forecasts = await fetch(`${this.__URL__}forecast/daily?city=${query}&days=2&key=${this.__API_KEY__}`)
         const response = await forecasts.json()
         const { city_name, timezone, lon, lat } = response
-        const { max_temp, min_temp, wind_cdir_full, valid_date, weather: { icon, description } } = response.data[0]
+        const { max_temp, min_temp, wind_cdir_full, valid_date, weather: { icon, description } } = response.data[1]
         return [{ city_name, timezone, lon, lat, max_temp, min_temp, wind_cdir_full, valid_date, icon, description }]
     },
     /**

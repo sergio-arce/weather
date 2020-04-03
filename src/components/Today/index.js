@@ -1,54 +1,59 @@
 
 import React, { useEffect, useState } from 'react'
-// logic
 import logic from '../../logic/'
 // components
 import Icon from '../Icon'
-// loading
+import LocationDateTime from '../LocationDateTime'
 import Loading from '../Loading'
 
 const Today = ({ city }) => {
 	const [forecasts, setForecasts] = useState(false)
-	const [isVisible, setIsVisible] = useState(false)
+	const [isVisible, setIsVisible] = useState(true)
+	const [error, setError] = useState(false)
 
 	useEffect(() => {
-		forecastToday(city)
+		(async () => {
+			try {
+				const results = await logic.forecastToday(city)
+				setForecasts(results)
+				setIsVisible(false)
+			} catch ({ message }) {
+				setError(message)
+			}
+		})()
 	}, [city])
 
-	const forecastToday = city => {
-		setIsVisible(true)
-		try {
-			logic.forecastToday(city)
-				.then(resp => {
-					setForecasts(resp)
-					setIsVisible(false)
-				})
-				.catch(({ message }) => console.log('error', message))
-		} catch ({ message }) {
-			console.log('error-searchForCity', message)
-		}
-	}
-
-	return <>
+	if (error) return <h2>{error}</h2>
+ 	return <>
 		<Loading isVisible={isVisible} />
 		{forecasts && forecasts.map((forecast, index) => <div key={index}>
-			<p>city_name: {forecast.city_name}</p>
+			<LocationDateTime
+				name={forecast.city_name}
+				date={forecast.last_ob_time}
+			/>
 			<Icon 
 				icon={forecast.icon}
 				text={forecast.description}
 			/>
-			<p>temp: {forecast.temp}</p>
-			<p>max_temp: {forecast.max_temp}</p>
-			<p>min_temp: {forecast.min_temp}</p>
+			<p><i className="fas fa-wind">{forecast.wind_cdir_full}</i></p>
+			{/* <p>Wind: {forecast.wind_cdir_full}</p> */}
+
+			<p>temp: {forecast.temp}ºC</p>
+
+
+			<p>max <i className="fas fa-temperature-high"> {forecast.max_temp}</i></p>
+			{/* <p>Max: {forecast.max_temp}</p> */}
+			<p>min <i className="fas fa-temperature-low"> {forecast.min_temp}</i></p>
+ 
+			{/* <p>Min: {forecast.min_temp}</p> */}
+
 			<p>timezone: {forecast.timezone}</p>
 			<p>ob_time: {forecast.ob_time}</p>
-			<p>last_ob_time: {forecast.last_ob_time}</p>
-			<p>wind_cdir_full: {forecast.wind_cdir_full}</p>
+
+			<p style={{display: 'flex', alignItems: 'center'}}>sunrise {forecast.sunrise} </p>
 			<p>sunrise: {forecast.sunrise}</p>
 			<p>sunset: {forecast.sunset}</p>
 			<p>datetime: {forecast.datetime}</p>
-			<p>lon: {forecast.lon}</p>
-			<p>lat: {forecast.lat}</p>
 		</div>)}
 	</>
 }

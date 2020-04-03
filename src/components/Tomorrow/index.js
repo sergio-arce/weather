@@ -9,25 +9,22 @@ import Loading from '../Loading'
 
 const Tomorrow = ({ city }) => {
 	const [forecasts, setForecasts] = useState(false)
-	const [isVisible, setIsVisible] = useState(false)
+	const [isVisible, setIsVisible] = useState(true)
+	const [error, setError] = useState(false)
 
 	useEffect(() => {
-		forecastTomorrow(city)
+		(async () => {
+			try {
+				const results = await logic.forecastTomorrow(city)
+				setForecasts(results)
+				setIsVisible(false)
+			} catch ({ message }) {
+				setError(message)
+			}
+		})()
 	}, [city]) 
 
-	const forecastTomorrow = city => {
-		setIsVisible(true)
-		try {
-			logic.forecastTomorrow(city)
-				.then(resp => {
-					setForecasts(resp)
-					setIsVisible(false)
-				})
-				.catch(({ message }) => console.log('error', message))
-		} catch ({ message }) {
-			console.log('error-forecastTomorrow', message)
-		}
-	}
+	if (error) return <h2>{error}</h2>
 
 	return <>
 		<Loading isVisible={isVisible} />

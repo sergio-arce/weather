@@ -10,6 +10,8 @@ import SexteenDays from '../SexteenDays'
 import Geolocation from '../Geolocation'
 // routes
 import { Route, withRouter, Switch, Redirect } from 'react-router-dom'
+// // animated
+import { Animated } from 'react-animated-css'
 
 const App = ({ history }) => {
 	const [city, setCity] = useState(false)
@@ -19,10 +21,13 @@ const App = ({ history }) => {
 		history.push('/today')
 	}
 	return <>
-		<div className="header">
-			<Search searchWeather={searchWeather}/>
-			{city && <Menu />}
-		</div>
+		<Animated animationIn="bounceInDown" animationOut="fadeOut" isVisible={true}>
+			<div className="header">
+				<Search searchWeather={searchWeather}/>
+				{city && <Menu />}
+			</div>
+		</Animated>
+		<hr className="divider"/>
 		<Switch>
 			<Route exact path='/' render={() => !city && <Geolocation />} />
 			<Route exact path='/today' render={() => city ? <Today city={city} /> : <Redirect  to='/' />} />
