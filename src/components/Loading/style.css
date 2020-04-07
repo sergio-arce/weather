@@ -3,7 +3,7 @@
     justify-content: center;
     height: 100vh;
     align-items: center;
-    background-color: rgba(23, 23, 25, 0.8);;
+    /* background-color: rgba(23, 23, 25, 0.8); */
 }
 .loading__container {
     display: flex;
@@ -14,7 +14,6 @@
     width: 12rem;
     background: black;
     border-radius: 0.5rem;
-    
 }
 
 .loading__text {

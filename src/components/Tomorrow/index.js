@@ -3,9 +3,10 @@ import React, { useEffect, useState } from 'react'
 // logic
 import logic from '../../logic'
 // components
-import Icon from '../Icon'
-// loading
 import Loading from '../Loading'
+import Icon from '../Icon'
+import LocationDateTime from '../LocationDateTime'
+import Temp from '../Temp'
 
 const Tomorrow = ({ city }) => {
 	const [forecasts, setForecasts] = useState(false)
@@ -16,6 +17,7 @@ const Tomorrow = ({ city }) => {
 		(async () => {
 			try {
 				const results = await logic.forecastTomorrow(city)
+				console.log(results)
 				setForecasts(results)
 				setIsVisible(false)
 			} catch ({ message }) {
@@ -28,20 +30,28 @@ const Tomorrow = ({ city }) => {
 
 	return <>
 		<Loading isVisible={isVisible} />
-		{forecasts && forecasts.map((forecast, index) => <div key={index}>
-			<p>city_name: {forecast.city_name}</p>
-			<Icon 
-				icon={forecast.icon}
-				text={forecast.description}
-			/>
-			<p>timezone: {forecast.timezone}</p>
-			<p>lon: {forecast.lon}</p>
-			<p>lat: {forecast.lat}</p>
-			<p>max_temp: {forecast.max_temp}</p>
-			<p>min_temp: {forecast.min_temp}</p>
-			<p>wind_cdir_full: {forecast.wind_cdir_full}</p>
-			<p>valid_date: {forecast.valid_date}</p>
-		</div>)}
+		{forecasts && forecasts.map((forecast, index) => (
+			<div 
+				key={index}
+				className="tomorrow"
+			>
+				<LocationDateTime 
+					name={forecast.city_name}
+					date={forecast.valid_date}
+				/>
+				<Temp 
+					max={forecast.max_temp}
+					min={forecast.min_temp}
+				/> 
+				<Icon 
+					icon={forecast.icon}
+					text={forecast.description}
+				/>
+				<p className="tomorrow--items">Wind <i className="fas fa-wind"> {forecast.wind_cdir_full}</i></p>
+				<p className="tomorrow--items">Long {forecast.lon}</p>
+				<p className="tomorrow--items">Lat {forecast.lat}</p>
+			</div>
+		))}
 	</>
 }
 export default Tomorrow

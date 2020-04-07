@@ -3,10 +3,11 @@ import React, { useEffect, useState } from 'react'
 // logic
 import logic from '../../logic'
 // components
+import Loading from '../Loading'
 import Icon from '../Icon'
 import LocationDateTime from '../LocationDateTime'
-// loading
-import Loading from '../Loading'
+//moment
+import moment from 'moment'
 
 const SevenDays = ({ city }) => {
 	const [forecasts, setForecasts] = useState(false)
@@ -33,17 +34,27 @@ const SevenDays = ({ city }) => {
 			name={forecasts.city_name}
 			date={forecasts.timezone}
 		/>
-		{forecasts && forecasts.data.map((forecast, index) => <div key={index}>
-			<Icon 
-				icon={forecast.weather.icon}
-				text={forecast.weather.description}
-				/> 
-			<p>wind_cdir_full: {forecast.wind_cdir_full}</p>
-			<p>valid_date: {forecast.valid_date}</p>
-			<p>max_temp: {forecast.max_temp}</p>
-			<p>min_temp: {forecast.min_temp}</p>
-			<p>datetime: {forecast.datetime}</p>
-		</div>)}
+		{forecasts && forecasts.data.map((forecast, index) =>(
+			<div 
+				key={index}
+				className="sevendays"
+			>
+				<hr className="sevendays--divider"/>
+				<div className="sevendays--item">
+					<Icon 
+						icon={forecast.weather.icon}
+						text={forecast.weather.description}
+					/>
+					<div>
+						<p>{moment(forecast.datetime).format('dddd - DD')}</p>
+						<p>Max <i className="fas fa-temperature-high">{Math.round(forecast.max_temp)}</i></p>
+						<p>Min <i className="fas fa-temperature-low">{Math.round(forecast.min_temp)}</i></p>
+						<p>Wind <i className="fas fa-wind"></i></p>
+						<p>{forecast.wind_cdir_full}</p>
+					</div> 
+				</div>
+			</div>
+		))}
 	</>
 }
 export default SevenDays
