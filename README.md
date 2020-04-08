@@ -7,15 +7,17 @@
 
 ### Usage
 
-    When loading the application, geolocation is used to give the user the current forecast where they are.
-    If for any reason the application cannot access geolocation, it can search the current forecast by city, town or country.
+    When you load the application for firts time, it will ask you to accept geolocation in order 
+    to provide you with the current forecast wherever you are.
+    If for any reason the application cannot access geolocation, you can search the current
+    forecast by it city, town or country.
 
 ![](https://media.giphy.com/media/WQg1PGTQZMaEEHtALP/giphy.gif)
 ![](https://media.giphy.com/media/kdRXTzDznjwTyryxlh/giphy.gif)
 
 ### Demo live
 
-Click me [here](https://sergi23-weather-app.netlify.com)
+Click [here](https://sergi23-weather-app.netlify.com)
 
 ### About
 
@@ -24,7 +26,7 @@ Click me [here](https://sergi23-weather-app.netlify.com)
 
 ### Environment setup 
 
-1. Clone this project:  
+1. Clone this project: `$ git clone https://github.com/sergi23/weather`  
 
         $ git clone https://github.com/sergi23/weather
 
@@ -56,16 +58,19 @@ Want to contribute? Follow these recommendations.
 
 ### Built with
 
-- ES6
-- Sass
-- Javascript
-- React.js
-- Jest
+    - ES6
+    - Sass
+    - Javascript
+    - React.js
+    - react-router-dom
+    - Jest
+
+### Test coverage
 
 ### Author
 
 - Sergio Arce 
-- e-mail: _sergio.arce.dev@gmail.com_
+- e-mail: sergio.arce.dev@gmail.com
 - [Github](https://github.com/sergi23)
 
 ### License & copyright
