@@ -28,19 +28,13 @@ Click [here](https://sergi23-weather-app.netlify.com)
 
 1. Clone this project: `$ git clone https://github.com/sergi23/weather`  
 
-        $ git clone https://github.com/sergi23/weather
+2. Move to the proyect folder: `$ cd weather`
 
-2. Move to the proyect folder:
+3. Install dependencies: `$ npm install or $ yarn install`
 
-        $ cd weather
+4. Run app: `$ npm start  or $ yarn start`
 
-3. Install dependencies
-
-        $ npm install or $ yarn install
-
-4. Run app
-
-        $ npm start  or $ yarn start
+        
 
 ### Contributing
 
@@ -48,13 +42,13 @@ If you find issues in this project!
 
 Want to contribute? Follow these recommendations.
 
-    1. Fork it!
-    2. Create your Features branch: git checkout -b my-new-feature
-    3. Commit your changes: git commit -m "Add some feature"
-    4. Push to the branch: git push origin my-new-branch.
+1. Fork it!
 
+2. Create your Features branch: `git checkout -b my-new-feature`
 
-### Api
+3. Commit your changes: `git commit -m "Add some feature"`
+
+4. Push to the branch: `git push origin my-new-branch`
 
 ### Built with
 
