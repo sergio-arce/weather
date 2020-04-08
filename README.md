@@ -9,8 +9,10 @@
 
     When you load the application for firts time, it will ask you to accept geolocation in order 
     to provide you with the current forecast wherever you are.
+    
     If for any reason the application cannot access geolocation, you can search the current
     forecast by it city, town or country.
+    
 
 ![](https://media.giphy.com/media/WQg1PGTQZMaEEHtALP/giphy.gif)
 ![](https://media.giphy.com/media/kdRXTzDznjwTyryxlh/giphy.gif)
