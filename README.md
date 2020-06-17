@@ -17,7 +17,8 @@
 
 ### Demo live
 
-Click [here](https://sergi23-weather-app.netlify.com)
+Click [here](https://sergi23-weather-app.netlify.app/)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/8d8db372-f054-4434-b403-698dcd875865/deploy-status)](https://app.netlify.com/sites/sergi23-weather-app/deploys)
 
 ### About
 
@@ -60,13 +61,5 @@ Want to contribute? Follow these recommendations.
     - Jest
 
 ### Test coverage
-
-### Author
-
-- Sergio Arce 
-- e-mail: sergio.arce.dev@gmail.com
-- [Github](https://github.com/sergi23)
-
-### License & copyright
 
 - © [Sergio Arce](https://github.com/sergi23), javascript front-end developer.
