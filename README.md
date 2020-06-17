@@ -18,7 +18,7 @@
 ### Demo live
 
 Click [here](https://sergi23-weather-app.netlify.app/)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/8d8db372-f054-4434-b403-698dcd875865/deploy-status)](https://app.netlify.com/sites/sergi23-weather-app/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/8d8db372-f054-4434-b403-698dcd875865/deploy-status)](https://sergi23-weather-app.netlify.app/)
 
 ### About
 
