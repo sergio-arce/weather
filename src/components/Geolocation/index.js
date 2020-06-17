@@ -50,6 +50,7 @@ const Geolocation = () => {
 
 	return <>
 		<Loading isVisible={isVisible} />
+
 		{locations && locations.data.map((location, index) => (
 			<div 
 				key={index}
