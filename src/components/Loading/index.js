@@ -1,5 +1,6 @@
 
 import React from 'react'
+import PropTypes from 'prop-types'
 import './style.css'
 // material/ui
 import CircularProgress from '@material-ui/core/CircularProgress'
@@ -15,4 +16,11 @@ const Loading = ({ isVisible, text = 'Loading...', color = 'white' }) => {
         </div>
     </div>
 }
+
+Loading.propTypes = {
+    isVisible: PropTypes.bool.isRequired,
+    // text: PropTypes.string.isRequired,
+    // color: PropTypes.string.isRequired
+}
+
 export default Loading

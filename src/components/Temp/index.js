@@ -1,5 +1,6 @@
 
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const Temp = ({ temp, max, min }) => <>
     <div className="temp">
@@ -9,5 +10,11 @@ const Temp = ({ temp, max, min }) => <>
             </div>
     </div>
 </>
+
+Temp.propTypes = {
+    temp: PropTypes.number.isRequired,
+    // max: PropTypes.string.isRequired,
+    // min: PropTypes.string.isRequired
+}
 
 export default Temp

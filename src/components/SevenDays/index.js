@@ -1,5 +1,6 @@
 
 import React, { useEffect, useState } from 'react'
+import PropTypes from 'prop-types'
 // logic
 import logic from '../../logic'
 // components
@@ -56,5 +57,9 @@ const SevenDays = ({ city }) => {
 			</div>
 		))}
 	</>
+}
+
+SevenDays.propTypes = {
+	city: PropTypes.string.isRequired
 }
 export default SevenDays

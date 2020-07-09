@@ -1,5 +1,6 @@
 
 import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 // components 
 import Search from '../Search'
 import Menu from '../Menu'
@@ -37,4 +38,8 @@ const App = ({ history }) => {
 		</Switch>
 	</>
 }
+App.propTypes = {
+	history: PropTypes.object.isRequired
+}
+
 export default withRouter(App)

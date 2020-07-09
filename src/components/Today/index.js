@@ -1,5 +1,6 @@
 
 import React, { useEffect, useState } from 'react'
+import PropTypes from 'prop-types'
 import logic from '../../logic/'
 // components
 import Loading from '../Loading'
@@ -52,4 +53,9 @@ const Today = ({ city }) => {
 		))}
 	</>
 }
+
+Today.propTypes = {
+	city: PropTypes.string.isRequired
+}
+
 export default Today
